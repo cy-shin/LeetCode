@@ -9,22 +9,27 @@
  *     }
  * }
  */
-        
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if(head == null) return false;
-        
-        ListNode slow = head;
-        ListNode fast = head;
+        boolean result = false;
 
-        while(slow != null && fast != null && fast.next != null){         
-            slow = slow.next;
-            fast = fast.next.next;
+        Set<ListNode> set = new HashSet<>();
 
-            if(slow == fast) return true;     
+        if(head!=null){
+            result = findCycle(head, set);
         }
 
-        return false;
+        return result;
     }
 
+    public boolean findCycle(ListNode head, Set<ListNode> set){
+        if(head.next == null) return false;
+        
+        if(head.next != null){
+            if(set.contains(head.next)) return true;
+            set.add(head.next);
+        }       
+
+        return findCycle(head.next, set);
+    }
 }
