@@ -10,20 +10,36 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        List<Integer> list = new ArrayList<>();
+        if(head == null) return true;
 
-        while(head!=null){
-            list.add(head.val);
+        // 1. find center
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            System.out.println(slow.val);
+        }
+
+        // 2. reverse from next of center to end
+        ListNode reverse = null;
+        ListNode curr = slow.next;
+
+        while(curr != null){
+            ListNode temp = curr.next;
+            curr.next = reverse;
+            reverse = curr;
+            curr = temp;
+        }
+        
+        // 3. compare two
+        while(reverse!=null){
+            if(reverse.val != head.val) return false;
+            reverse = reverse.next;
             head = head.next;
         }
-
-        int start = 0;
-        int end = list.size() - 1;
-
-        while(start < end){
-            if(list.get(start++) != list.get(end--)) return false;
-        }
-
+        
         return true;
     }
 
