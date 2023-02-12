@@ -19,10 +19,9 @@ class Solution {
         while(fast.next != null && fast.next.next != null){
             slow = slow.next;
             fast = fast.next.next;
-            System.out.println(slow.val);
         }
 
-        // 2. reverse from next of center to end
+        // 2. reverse from center to end
         ListNode reverse = null;
         ListNode curr = slow.next;
 
@@ -33,7 +32,7 @@ class Solution {
             curr = temp;
         }
         
-        // 3. compare two
+        // 3. compare
         while(reverse!=null){
             if(reverse.val != head.val) return false;
             reverse = reverse.next;
