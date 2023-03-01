@@ -14,14 +14,6 @@ class Solution {
             nums[n] = nums[m];
             nums[m] = swap;
         }
-
-        // for(int i=n+1; i<nums.length; i++){
-        //     for(int j=i+1; j<nums.length; j++){
-        //         int sort = nums[i];
-        //         nums[i] = nums[j];
-        //         nums[j] = sort;
-        //     }
-        // }
         
         int i = n+1;
         int j = nums.length-1;
