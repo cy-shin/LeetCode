@@ -1,28 +1,21 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        int index = nums.length-1;
+        int n = nums.length-2;
 
-        while(index > 0 && nums[index]<=nums[index-1]){
-            index--;
+        while(n >= 0 && nums[n]>=nums[n+1]){
+            n--;
         }
 
-        if(index>0){
-            int left = nums[index-1];
-            int right = Integer.MAX_VALUE;
-            int rightIndex = 0;
-            
-            for(int i=index; i<nums.length; i++){
-                if(nums[i] <= right && nums[i] > left){
-                    rightIndex = i;
-                    right = nums[i];
-                }
-            }
+        if(n>=0){
+            int m = nums.length -1;
+            while(nums[n]>=nums[m]) m--;
 
-            nums[index-1] = right;
-            nums[rightIndex] = left;
+            int swap = nums[n];
+            nums[n] = nums[m];
+            nums[m] = swap;
         }
 
-        for(int i=index; i<nums.length; i++){
+        for(int i=n+1; i<nums.length; i++){
             for(int j=i+1; j<nums.length; j++){
                 int sort = nums[i];
                 nums[i] = nums[j];
