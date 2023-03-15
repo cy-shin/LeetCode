@@ -13,7 +13,6 @@ class Solution {
         } else {
             for(int i=0; i<nums.length; i++){
                 if(list.contains(nums[i])) continue;
-                if(list.size() == nums.length) break;
                 list.add(nums[i]);
                 permute(nums, list, resultList);
                 list.remove(list.size()-1);
